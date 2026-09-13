@@ -1,6 +1,13 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lodestar.dev/schemas/v1/manifest.schema.json",
-  "title": "Lodestar Package Manifest",
-  "description": "Draft placeholder. Manifest fields are not yet specified."
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://lodestar.dev/schemas/v1/manifest.schema.json","title":"Lodestar package manifest","type":"object",
+  "required":["standardVersion","kind","id","releaseVersion","assets","resources"],
+  "properties":{
+    "standardVersion":{"const":"1-draft"},"kind":{"const":"packageManifest"},"id":{"type":"string","minLength":1},"name":{"type":"string"},"releaseVersion":{"type":"string","minLength":1},
+    "assets":{"type":"array","items":{"type":"object","required":["id","kind","path"],"properties":{"id":{"type":"string","minLength":1},"kind":{"enum":["instrument","performance","sourcePreset","effectPreset","effectChain"]},"path":{"$ref":"#/$defs/safePath"}},"additionalProperties":false}},
+    "resources":{"type":"array","items":{"type":"object","required":["id"],"properties":{"id":{"type":"string","minLength":1},"mediaType":{"type":"string"},"path":{"$ref":"#/$defs/safePath"},"external":{"type":"object","required":["packageId","resourceId"],"properties":{"packageId":{"type":"string"},"resourceId":{"type":"string"}},"additionalProperties":false},"hash":{"type":"string","pattern":"^[a-z0-9]+:[A-Fa-f0-9]+$"}},"oneOf":[{"required":["path"]},{"required":["external"]}],"additionalProperties":false}},
+    "dependencies":{"type":"array","items":{"type":"object","required":["packageId","version","required"],"properties":{"packageId":{"type":"string"},"version":{"type":"string"},"required":{"type":"boolean"}},"additionalProperties":false}},
+    "providers":{"type":"array","items":{"type":"object","required":["providerId","role","required"],"properties":{"providerId":{"type":"string"},"role":{"enum":["source","effect"]},"required":{"type":"boolean"},"capabilities":{"type":"array","items":{"type":"string"}},"fallback":{"enum":["silence","bypass","omit"]}},"additionalProperties":false}},
+    "extensions":{"type":"object"}
+  },
+  "$defs":{"safePath":{"type":"string","minLength":1,"pattern":"^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\u0000).+$"}},"additionalProperties":true
 }

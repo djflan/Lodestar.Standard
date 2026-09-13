@@ -1,6 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lodestar.dev/schemas/v1/source-preset.schema.json",
-  "title": "Lodestar Source Preset",
-  "description": "Draft placeholder. Source preset serialization is not yet specified."
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://lodestar.dev/schemas/v1/source-preset.schema.json","title":"Lodestar Source Preset","type":"object","required":["standardVersion","kind","id","providerId","payload"],
+  "properties":{"standardVersion":{"const":"1-draft"},"kind":{"const":"sourcePreset"},"id":{"type":"string"},"name":{"type":"string"},"providerId":{"type":"string"},"payloadVersion":{"type":"string"},"requiredCapabilities":{"type":"array","items":{"type":"string"}},"resourceIds":{"type":"array","items":{"type":"string"}},"payload":{},"extensions":{"type":"object"}},"additionalProperties":true
 }

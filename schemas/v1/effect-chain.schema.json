@@ -1,6 +1,4 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lodestar.dev/schemas/v1/effect-chain.schema.json",
-  "title": "Lodestar Effect Chain",
-  "description": "Draft placeholder. Effect chain serialization is not yet specified."
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://lodestar.dev/schemas/v1/effect-chain.schema.json","title":"Lodestar Effect Chain","type":"object","required":["standardVersion","kind","id","slots"],
+  "properties":{"standardVersion":{"const":"1-draft"},"kind":{"const":"effectChain"},"id":{"type":"string"},"name":{"type":"string"},"slots":{"type":"array","items":{"type":"object","required":["id"],"properties":{"id":{"type":"string"},"effectPresetId":{"type":"string"},"effect":{"type":"object","required":["providerId","payload"],"properties":{"providerId":{"type":"string"},"payloadVersion":{"type":"string"},"requiredCapabilities":{"type":"array","items":{"type":"string"}},"payload":{}},"additionalProperties":true},"bypass":{"type":"boolean","default":false},"optional":{"type":"boolean","default":false},"fallback":{"const":"bypass"}},"oneOf":[{"required":["effectPresetId"]},{"required":["effect"]}],"additionalProperties":true}},"extensions":{"type":"object"}},"additionalProperties":true
 }

@@ -1,6 +1,6 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lodestar.dev/schemas/v1/instrument.schema.json",
-  "title": "Lodestar Instrument",
-  "description": "Draft placeholder. Serialization is not yet specified."
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://lodestar.dev/schemas/v1/instrument.schema.json","title":"Lodestar Instrument","type":"object","required":["standardVersion","kind","id","layers","mixer"],
+  "properties":{"standardVersion":{"const":"1-draft"},"kind":{"const":"instrument"},"id":{"type":"string","minLength":1},"name":{"type":"string"},
+    "layers":{"type":"array","minItems":1,"items":{"type":"object","required":["id","source","channel"],"properties":{"id":{"type":"string"},"source":{"type":"object","required":["id","providerId"],"properties":{"id":{"type":"string"},"providerId":{"type":"string"},"payloadVersion":{"type":"string"},"requiredCapabilities":{"type":"array","items":{"type":"string"}},"presetId":{"type":"string"},"resourceIds":{"type":"array","items":{"type":"string"}},"payload":{},"optional":{"type":"boolean","default":false},"fallback":{"enum":["silence","omit"]}},"additionalProperties":true},"channel":{"$ref":"routing.schema.json#/$defs/channel"}},"additionalProperties":true}},
+    "instrumentChannel":{"$ref":"routing.schema.json#/$defs/channel"},"mixer":{"allOf":[{"$ref":"routing.schema.json#/$defs/mixer"},{"properties":{"scope":{"const":"instrument"}}}]},"extensions":{"type":"object"}},"additionalProperties":true
 }

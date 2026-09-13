@@ -1,5 +1,9 @@
 # Real-Time Behavior
 
-> **Status: Draft placeholder**
+Before activation, hosts resolve packages/resources, validate routes, discover providers, allocate memory, create instances, load/decode resources, and call provider preparation. Render callbacks MUST NOT perform filesystem/network I/O, provider discovery, unbounded allocation, unbounded locks, blocking waits, process creation, logging that can block, or other work without a known realtime bound.
 
-Threading, allocation, blocking, scheduling, determinism, and deadline requirements are not yet specified.
+Providers MUST disclose preparation requirements and maximum prepared block/layout constraints. Their render calls MUST operate only on prepared state and supplied buffers/events. State replacement that needs allocation or I/O MUST be prepared off the audio thread and swapped using bounded synchronization. Cleanup MAY occur later off-thread.
+
+Hosts MUST supply monotonically coherent timing and correctly bounded sample offsets. Providers MUST not retain host buffers beyond the call unless the contract explicitly transfers ownership. Errors in render SHOULD degrade to silence for a Source or passthrough for an Effect, be recorded through a realtime-safe diagnostic channel, and avoid destabilizing unrelated paths.
+
+Implementations SHOULD avoid denormals/non-finite samples, make seeded randomness explicit, and document nondeterministic behavior. Deterministic offline rendering is encouraged but not yet a conformance tier. No hard CPU, memory, voice, bus, or latency limit is normative; hosts SHOULD expose soft limits during validation rather than fail unpredictably during render.
