@@ -25,6 +25,8 @@ Part Channel outputs ───────────────────�
 
 The Instrument Mixer owns Layer Channels and Instrument-scope buses. The Performance Mixer owns Part Channels, Performance-scope buses, and the Master Channel. An Instrument Channel represents the mixed instrument output before it enters its containing Part Channel; implementations MAY fuse adjacent processing stages if results remain equivalent.
 
+A Performance owns logical output configuration and MAY own one host-neutral Sequence and Tempo Map. A host adapter maps logical outputs to devices, files, plugin buses, or host endpoints. Sequence/tempo state remains Performance-scoped and cannot change Part, Instrument, or provider ownership.
+
 ## Lifecycle and invariants
 
 Hosts MUST resolve all required asset, resource, provider, and capability references during preparation, before realtime rendering. Runtime instances and provider voices are ephemeral; serialized definitions/presets are persistent. Editing an instance does not mutate a referenced reusable asset unless the authoring operation explicitly creates a new revision.

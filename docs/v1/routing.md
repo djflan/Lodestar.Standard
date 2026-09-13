@@ -6,7 +6,7 @@ A route graph exists independently in each Instrument Mixer and Performance Mixe
 
 A Layer Source feeds its Layer Channel. Each Layer Channel routes either directly to the Instrument Mixer output or serially to one Instrument submix bus, and MAY send in parallel to Instrument send buses. Bus outputs route to another later bus or the scope output. The Instrument output passes through its Instrument Channel and then its owning Part Channel. The same pattern applies to Part Channels and Performance buses before the Master Channel.
 
-A primary route MUST have exactly one destination. A send duplicates a tap without replacing the primary route and has a linear normalized amount from 0 (silence) through 1 (unity). Values above unity are not portable v1 data. Whether a send tap is pre/post fader is intentionally unresolved; serialized v1 Draft data MAY name a supported placement, and a host MUST report unsupported placement rather than silently substitute it.
+A primary route MUST have exactly one destination. A send duplicates a tap without replacing the primary route and has a linear normalized amount from 0 (silence) through 1 (unity). Values above unity are not portable v1 data. A send MAY use `preFader` or `postFader`; omission defaults to `postFader`. The processing points are defined in [channels](channels.md).
 
 A submix bus is serial/group routing. A send bus is parallel routing and its processed Return Channel re-enters the owning mixer graph. A bus MAY send to a send bus and MAY route to a later submix bus.
 

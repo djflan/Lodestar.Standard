@@ -3,8 +3,8 @@
   "$id": "https://lodestar.dev/schemas/v1/routing.schema.json",
   "title": "Lodestar v1 routing definitions",
   "$defs": {
-    "effectRef": { "type": "object", "required": ["id", "effectId"], "properties": { "id": {"type":"string","minLength":1}, "effectId":{"type":"string","minLength":1}, "bypass":{"type":"boolean","default":false} }, "additionalProperties": true },
-    "send": { "type":"object", "required":["busId","amount"], "properties":{"busId":{"type":"string","minLength":1},"amount":{"type":"number","minimum":0,"maximum":1},"tap":{"enum":["preFader","postFader"]}},"additionalProperties":false },
+    "effectRef": { "type": "object", "required": ["id", "effectId"], "properties": { "id": {"type":"string","minLength":1}, "effectId":{"type":"string","minLength":1}, "bypass":{"type":"boolean","default":false}, "wetDry":{"type":"number","minimum":0,"maximum":1,"default":1} }, "additionalProperties": true },
+    "send": { "type":"object", "required":["busId","amount"], "properties":{"busId":{"type":"string","minLength":1},"amount":{"type":"number","minimum":0,"maximum":1},"tap":{"enum":["preFader","postFader"],"default":"postFader"}},"additionalProperties":false },
     "channel": { "type":"object", "required":["id","output"], "properties":{"id":{"type":"string","minLength":1},"enabled":{"type":"boolean","default":true},"mute":{"type":"boolean","default":false},"solo":{"type":"boolean","default":false},"gain":{"type":"number","minimum":0,"default":1},"pan":{"type":"number","minimum":-1,"maximum":1,"default":0},"inserts":{"type":"array","items":{"$ref":"#/$defs/effectRef"}},"sends":{"type":"array","items":{"$ref":"#/$defs/send"}},"output":{"type":"string","minLength":1}},"additionalProperties":true },
     "bus": { "type":"object", "required":["id","kind","channel"], "properties":{"id":{"type":"string","minLength":1},"kind":{"enum":["submix","send"]},"channel":{"$ref":"#/$defs/channel"}},"additionalProperties":false },
     "mixer": { "type":"object", "required":["scope","buses"], "properties":{"scope":{"enum":["instrument","performance"]},"buses":{"type":"array","items":{"$ref":"#/$defs/bus"}}},"additionalProperties":true }

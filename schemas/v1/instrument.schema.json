@@ -7,7 +7,7 @@
   "properties": {
     "standardVersion": { "const": "1-draft" },
     "kind": { "const": "instrument" },
-    "id": { "type": "string", "minLength": 1 },
+    "id": { "$ref": "identity.schema.json#/$defs/globalId" },
     "metadata": { "$ref": "metadata.schema.json#/$defs/metadata" },
     "layers": {
       "type": "array", "minItems": 1,
@@ -21,10 +21,10 @@
             "required": ["id", "providerId", "payloadVersion"],
             "properties": {
               "id": { "type": "string", "minLength": 1 },
-              "providerId": { "type": "string", "minLength": 1 },
+              "providerId": { "$ref": "identity.schema.json#/$defs/globalId" },
               "payloadVersion": { "type": "string", "minLength": 1 },
-              "presetId": { "type": "string", "minLength": 1 },
-              "resourceIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+              "presetId": { "$ref": "identity.schema.json#/$defs/globalId" },
+              "resourceIds": { "type": "array", "items": { "$ref": "identity.schema.json#/$defs/globalId" }, "uniqueItems": true },
               "payload": {},
               "optional": { "type": "boolean", "default": false },
               "fallback": { "enum": ["silence", "omit"] }

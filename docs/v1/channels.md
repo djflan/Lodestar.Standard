@@ -10,6 +10,6 @@ The settled conceptual order is:
 source/input → ordered inserts → fader/gain and pan → sends/output
 ```
 
-V1 Draft has not settled send tap placement relative to inserts/fader. Implementations MUST preserve a serialized supported placement and MUST diagnose an unsupported placement. Insert slots process in list order. Mute produces silence on the affected channel and its post-mute routes. Solo resolution is host/mixer policy but MUST retain required ancestors and bus returns so a soloed signal remains audible.
+V1 supports `preFader` and `postFader` send taps. An omitted tap defaults to `postFader`. A pre-fader tap occurs after ordered inserts and before channel gain, pan, and mute; a post-fader tap occurs after those operations. Implementations MUST diagnose an unsupported placement rather than substitute it. Insert slots process in list order. Mute produces silence on the affected channel and its post-fader routes; pre-fader sends remain active. Solo resolution is host/mixer policy but MUST retain required ancestors and bus returns so a soloed signal remains audible.
 
-Gain 1 is unity and 0 is silence. Pan is -1 left, 0 center, and +1 right. The pan law remains declared implementation/profile behavior until finalized. Channels MAY be optimized away only if audible routing and state semantics remain equivalent.
+Gain 1 is unity and 0 is silence. Pan is -1 left, 0 center, and +1 right. V1 uses an equal-power stereo pan law: `leftGain = cos((pan + 1) * pi / 4)` and `rightGain = sin((pan + 1) * pi / 4)`. Channels MAY be optimized away only if audible routing and state semantics remain equivalent.

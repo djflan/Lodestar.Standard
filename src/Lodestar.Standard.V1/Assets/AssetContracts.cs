@@ -36,6 +36,56 @@ public interface IPerformanceDefinition
     IReadOnlyList<IPartDefinition> Parts { get; }
     IMixerDefinition Mixer { get; }
     IChannelDefinition MasterChannel { get; }
+    IOutputConfigurationDefinition OutputConfiguration { get; }
+    ISequenceTempoStateDefinition? SequenceTempoState { get; }
+}
+
+/// <summary>Performance-owned logical outputs mapped to endpoints by a host adapter.</summary>
+public interface IOutputConfigurationDefinition
+{
+    LodestarId MasterOutputId { get; }
+    IReadOnlyList<IAuxiliaryOutputDefinition> AuxiliaryOutputs { get; }
+}
+
+public enum AuxiliaryOutputSourceKind { Part, PerformanceBus }
+public interface IAuxiliaryOutputDefinition
+{
+    LodestarId Id { get; }
+    string Name { get; }
+    AuxiliaryOutputSourceKind SourceKind { get; }
+    LodestarId SourceId { get; }
+}
+
+public enum TimingAuthority { Performance, Host }
+public interface ISequenceTempoStateDefinition
+{
+    TimingAuthority TimingAuthority { get; }
+    ISequenceDefinition Sequence { get; }
+    ITempoMapDefinition TempoMap { get; }
+}
+
+public interface ISequenceDefinition
+{
+    IReadOnlyList<ISequencedEventDefinition> Events { get; }
+}
+
+public interface ISequencedEventDefinition
+{
+    double Beat { get; }
+    LodestarId PartId { get; }
+    string Kind { get; }
+    string PayloadJson { get; }
+}
+
+public interface ITempoMapDefinition
+{
+    IReadOnlyList<ITempoPointDefinition> Points { get; }
+}
+
+public interface ITempoPointDefinition
+{
+    double Beat { get; }
+    double BeatsPerMinute { get; }
 }
 
 /// <summary>A Part event target with an optional Instrument reference.</summary>

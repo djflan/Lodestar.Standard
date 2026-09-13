@@ -7,7 +7,7 @@
   "properties": {
     "standardVersion": { "const": "1-draft" },
     "kind": { "const": "packageManifest" },
-    "id": { "type": "string", "minLength": 1 },
+    "id": { "$ref": "identity.schema.json#/$defs/globalId" },
     "metadata": { "$ref": "metadata.schema.json#/$defs/metadata" },
     "releaseVersion": { "type": "string", "minLength": 1 },
     "assets": {
@@ -15,7 +15,7 @@
       "items": {
         "type": "object", "required": ["id", "kind", "path"],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
+          "id": { "$ref": "identity.schema.json#/$defs/globalId" },
           "kind": { "enum": ["instrument", "performance", "sourcePreset", "effectPreset", "effectChain"] },
           "path": { "$ref": "#/$defs/safePath" }
         },
@@ -27,15 +27,15 @@
       "items": {
         "type": "object", "required": ["id"],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
+          "id": { "$ref": "identity.schema.json#/$defs/globalId" },
           "mediaType": { "type": "string" },
           "path": { "$ref": "#/$defs/safePath" },
           "external": {
             "type": "object", "required": ["packageId", "resourceId"],
-            "properties": { "packageId": { "type": "string" }, "resourceId": { "type": "string" } },
+            "properties": { "packageId": { "$ref": "identity.schema.json#/$defs/globalId" }, "resourceId": { "$ref": "identity.schema.json#/$defs/globalId" } },
             "additionalProperties": false
           },
-          "hash": { "type": "string", "pattern": "^[a-z0-9]+:[A-Fa-f0-9]+$" }
+          "hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
         },
         "oneOf": [{ "required": ["path"] }, { "required": ["external"] }],
         "additionalProperties": false
@@ -45,7 +45,7 @@
       "type": "array",
       "items": {
         "type": "object", "required": ["packageId", "version", "required"],
-        "properties": { "packageId": { "type": "string" }, "version": { "type": "string" }, "required": { "type": "boolean" } },
+        "properties": { "packageId": { "$ref": "identity.schema.json#/$defs/globalId" }, "version": { "type": "string" }, "required": { "type": "boolean" } },
         "additionalProperties": false
       }
     },
@@ -54,7 +54,7 @@
       "items": {
         "type": "object", "required": ["providerId", "role", "required"],
         "properties": {
-          "providerId": { "type": "string" },
+          "providerId": { "$ref": "identity.schema.json#/$defs/globalId" },
           "role": { "enum": ["source", "effect"] },
           "required": { "type": "boolean" },
           "fallback": { "enum": ["silence", "bypass", "omit"] }

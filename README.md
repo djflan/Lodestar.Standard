@@ -28,7 +28,7 @@ MIDI, GM, GM2, GS, and XG are adapter or mapping concerns—not the native Lodes
 
 ## Start here
 
-Read the [v1 specification index](docs/v1/README.md), then the [object model](docs/v1/object-model.md), [routing model](docs/v1/routing.md), and [package format](docs/v1/packages.md). Draft decisions and unresolved questions are tracked in [decisions and open questions](docs/v1/decisions-and-open-questions.md).
+Read the [v1 specification index](docs/v1/README.md), then the canonical [architecture map](docs/v1/architecture-map.md), [object model](docs/v1/object-model.md), [routing model](docs/v1/routing.md), and [package format](docs/v1/packages.md). The artifact audit is in [reconciliation](docs/v1/reconciliation.md); Draft decisions are tracked in [decisions and open questions](docs/v1/decisions-and-open-questions.md).
 
 ## Build
 

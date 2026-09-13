@@ -26,4 +26,4 @@ Arrays with processing meaning are ordered. Object property order is insignifica
 }
 ```
 
-Canonical JSON and hash rules remain open.
+V1 does not define canonical JSON. Resource hashes follow [`.star` package](packages.md) byte rules and never depend on JSON property order.

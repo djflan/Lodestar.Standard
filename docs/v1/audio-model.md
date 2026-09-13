@@ -1,6 +1,6 @@
 # Audio Model
 
-V1 exchanges non-interleaved floating-point audio at provider/channel boundaries. Each buffer contains an equal number of sample frames per channel; a frame is the simultaneous sample position across channels. Stereo is the REQUIRED interchange layout. Providers that are internally mono or multichannel MUST adapt to stereo at their boundary and MUST declare any lossy adaptation. The normative pan law and mono conversion rule remain [open](decisions-and-open-questions.md).
+V1 exchanges non-interleaved floating-point audio at provider/channel boundaries. Each buffer contains an equal number of sample frames per channel; a frame is the simultaneous sample position across channels. Stereo is the REQUIRED interchange layout. A mono provider duplicates its sample to left and right at the provider boundary before channel panning. An internally multichannel provider MUST explicitly adapt to stereo at its boundary and declare any lossy adaptation. Channel pan uses the equal-power law in [channels](channels.md).
 
 The host supplies sample rate and block frame count during preparation. Implementations MUST support variable block lengths up to a prepared maximum and MUST NOT assume one fixed musical duration per block. Sample rate, maximum block size, and layout MUST NOT change during a render call; hosts MUST re-prepare affected instances for configuration changes.
 

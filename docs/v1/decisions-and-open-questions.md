@@ -6,15 +6,19 @@ The product names, hierarchy/cardinalities, channel/mixer/bus distinctions, two 
 
 Helios, Aurora, FluidSynth, workstation/plugin plans, and GM-family mappings are informative ecosystem context rather than mandatory dependencies.
 
+The September 2026 reconciliation also settles:
+
+1. `preFader` and `postFader` sends, defaulting to `postFader`.
+2. Equal-power stereo panning and mono duplication before panning.
+3. Optional host-owned Insert Slot `wetDry`, defaulting to fully wet.
+4. Lowercase reverse-DNS IDs with optional colon-separated local components.
+5. Exact opaque provider `payloadVersion` matching in v1.
+6. Optional SHA-256 hashes over exact uncompressed resource bytes.
+7. Required step and linear automation plus parameter descriptors.
+8. Deterministic offline rendering as an optional reported capability.
+9. One required main stereo output and optional named Part/bus auxiliary stereo outputs.
+10. An optional Performance Sequence and Tempo Map with explicitly selected Performance or host timing authority.
+
 ## Open Draft-v1 questions
 
-1. Whether sends are pre-insert, post-insert/pre-fader, post-fader, selectable, or a smaller required subset.
-2. The normative pan law and mono-to-stereo conversion rule; v1 currently requires hosts to declare them.
-3. Whether effect wet/dry is always a slot property or only a provider capability.
-4. The canonical URI/lexical grammar and registry policy for provider and asset IDs.
-5. The exact compatibility expression for provider payload revisions beyond provider-owned version strings.
-6. Whether content hashes become required and, if so, the canonical byte representation.
-7. Required automation interpolation curves and parameter-unit metadata.
-8. Whether deterministic offline rendering is a conformance level or only a best-effort capability.
-
-These questions do not reopen the settled architecture. Proposals follow the [proposal process](../proposals/README.md).
+No unresolved architecture decision is currently recorded. New unresolved semantics MUST enter through the [proposal process](../proposals/README.md) rather than being inferred by implementations.

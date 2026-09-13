@@ -6,6 +6,7 @@ namespace Lodestar.Standard.V1.Effects;
 
 public interface IEffectDefinition
 {
+    LodestarId Id { get; }
     ProviderId ProviderId { get; }
     string PayloadVersion { get; }
     IReadOnlyList<LodestarId> ResourceIds { get; }
@@ -27,6 +28,8 @@ public interface IInsertSlotDefinition
 {
     LodestarId Id { get; }
     bool Bypass { get; }
+    /// <summary>Host-owned dry/processed mix in 0..1; defaults to 1.</summary>
+    double WetDry { get; }
     bool Optional { get; }
     LodestarId? EffectPresetId { get; }
     IEffectDefinition? Effect { get; }

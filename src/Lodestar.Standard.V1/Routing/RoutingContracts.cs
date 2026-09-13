@@ -21,6 +21,10 @@ public interface ISendDefinition
     double Amount { get; }
     SendTap? Tap { get; }
 }
+public static class RoutingDefaults
+{
+    public const SendTap DefaultSendTap = SendTap.PostFader;
+}
 
 public interface IChannelDefinition
 {

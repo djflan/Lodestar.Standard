@@ -9,3 +9,7 @@ A **content package/tool** conforms when its ZIP/manifest/assets validate, refer
 Required missing assets, resources, providers, payload versions, or unknown required semantics make the affected asset unavailable. Optional items MUST declare fallback at their point of use: source silence/omission, effect bypass, or optional asset omission. Hosts MUST surface degradation and MUST NOT silently replace providers or presets.
 
 Package release compatibility is separate from Standard compatibility. Provider implementation versions are separate from payload versions. A runtime may support newer optional extensions while remaining v1-conforming; it MUST reject an unsupported Standard version or required feature.
+
+Conformance is independent of product identity and source availability. Helios, Aurora, FluidSynth, Lodestar Workstation, Unity, VST3, and CLAP are not required dependencies. Commercial and closed-source hosts/providers MAY conform, and no closed integration may be required for an independent implementation.
+
+Specification/docs are CC BY 4.0. Code, contracts, schemas, tests, and executable/reference examples are Apache-2.0; licensing does not change technical conformance.

@@ -11,7 +11,7 @@ These definitions are normative throughout v1.
 - **Channel** — a path that processes one signal. V1 identifies Layer, Instrument, Part, Bus/Return, and Master channels.
 - **Mixer** — an owner/summing context that combines multiple channel or bus outputs. Instrument Mixer combines Layer Channels; Performance Mixer combines Part Channels.
 - **Bus** — a shared or alternate scoped routing destination with input summing and a processing channel.
-- **Send** — a parallel tap from a channel or bus to a send bus, with an amount and an unresolved pre/post-fader placement choice.
+- **Send** — a parallel tap from a channel or bus to a send bus, with an amount and `preFader` or `postFader` placement; omission defaults to `postFader`.
 - **Return / Return Channel** — the processed output path of a send bus back into its owning mixer graph.
 - **Submix bus** — a serial/group destination replacing a signal's direct output route.
 - **Effect / Effect Definition** — persistent identity and provider payload describing a signal processor. Each identifies exactly one Effect Provider.

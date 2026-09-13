@@ -7,11 +7,11 @@
   "properties": {
     "standardVersion": { "const": "1-draft" },
     "kind": { "const": "effectPreset" },
-    "id": { "type": "string", "minLength": 1 },
+    "id": { "$ref": "identity.schema.json#/$defs/globalId" },
     "metadata": { "$ref": "metadata.schema.json#/$defs/metadata" },
-    "providerId": { "type": "string", "minLength": 1 },
+    "providerId": { "$ref": "identity.schema.json#/$defs/globalId" },
     "payloadVersion": { "type": "string", "minLength": 1 },
-    "resourceIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "resourceIds": { "type": "array", "items": { "$ref": "identity.schema.json#/$defs/globalId" }, "uniqueItems": true },
     "payload": {},
     "extensions": { "type": "object" }
   },

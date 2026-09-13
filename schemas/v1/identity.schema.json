@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/identity.schema.json",
+  "title": "Lodestar global identity",
+  "$defs": {
+    "globalId": {
+      "type": "string",
+      "pattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+(?:\\:[a-z0-9](?:[a-z0-9._-]*[a-z0-9])?)*$"
+    }
+  }
+}

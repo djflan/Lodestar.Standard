@@ -17,6 +17,10 @@ public interface IProviderDescriptor
     IReadOnlyList<string> PayloadVersions { get; }
     IReadOnlyList<string> Capabilities { get; }
 }
+public static class StandardCapabilities
+{
+    public const string DeterministicOfflineRendering = "deterministicOfflineRendering";
+}
 public interface IProviderRegistry
 {
     bool TryGet(ProviderId id, ProviderRole role, out IProviderDescriptor? descriptor);

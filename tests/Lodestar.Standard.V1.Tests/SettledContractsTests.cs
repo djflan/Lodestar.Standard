@@ -3,6 +3,7 @@ using Lodestar.Standard.V1.Providers;
 using Lodestar.Standard.V1.Routing;
 using Lodestar.Standard.V1.Assets;
 using Lodestar.Standard.V1.Effects;
+using Lodestar.Standard.V1.Events;
 using Lodestar.Standard.V1.Sources;
 using Xunit;
 
@@ -56,5 +57,56 @@ public sealed class SettledContractsTests
     {
         Assert.Equal(typeof(ProviderId), typeof(ISourcePresetDefinition).GetProperty(nameof(ISourcePresetDefinition.ProviderId))!.PropertyType);
         Assert.Equal(typeof(ProviderId), typeof(IEffectPresetDefinition).GetProperty(nameof(IEffectPresetDefinition.ProviderId))!.PropertyType);
+    }
+
+    [Fact]
+    public void PerformanceOwnsMixerMasterAndOutputConfiguration()
+    {
+        Assert.NotNull(typeof(IPerformanceDefinition).GetProperty(nameof(IPerformanceDefinition.Mixer)));
+        Assert.NotNull(typeof(IPerformanceDefinition).GetProperty(nameof(IPerformanceDefinition.MasterChannel)));
+        Assert.NotNull(typeof(IPerformanceDefinition).GetProperty(nameof(IPerformanceDefinition.OutputConfiguration)));
+    }
+
+    [Fact]
+    public void PackageManifestExposesAssetsAndResources()
+    {
+        Assert.NotNull(typeof(IPackageManifest).GetProperty(nameof(IPackageManifest.Assets)));
+        Assert.NotNull(typeof(IPackageManifest).GetProperty(nameof(IPackageManifest.Resources)));
+    }
+
+    [Fact]
+    public void SourceAndEffectDefinitionsBothHaveStableIdentity()
+    {
+        Assert.NotNull(typeof(ISourceDefinition).GetProperty(nameof(ISourceDefinition.Id)));
+        Assert.NotNull(typeof(IEffectDefinition).GetProperty(nameof(IEffectDefinition.Id)));
+    }
+
+    [Fact]
+    public void AdoptedRoutingAndEffectDefaultsAreStable()
+    {
+        Assert.Equal(SendTap.PostFader, RoutingDefaults.DefaultSendTap);
+        Assert.NotNull(typeof(IInsertSlotDefinition).GetProperty(nameof(IInsertSlotDefinition.WetDry)));
+    }
+
+    [Fact]
+    public void PerformanceCanExposeAuxiliaryOutputsAndPortableSequenceState()
+    {
+        Assert.NotNull(typeof(IOutputConfigurationDefinition).GetProperty(nameof(IOutputConfigurationDefinition.AuxiliaryOutputs)));
+        Assert.NotNull(typeof(IPerformanceDefinition).GetProperty(nameof(IPerformanceDefinition.SequenceTempoState)));
+        Assert.Equal(new[] { "Performance", "Host" }, Enum.GetNames<TimingAuthority>());
+    }
+
+    [Fact]
+    public void AutomationHasRequiredPortableInterpolationModes()
+    {
+        Assert.Equal(new[] { "Step", "Linear" }, Enum.GetNames<AutomationInterpolation>());
+        Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.Unit)));
+        Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.ProviderDefinedInterpolationIds)));
+    }
+
+    [Fact]
+    public void DeterministicOfflineRenderingHasStableCapabilityName()
+    {
+        Assert.Equal("deterministicOfflineRendering", StandardCapabilities.DeterministicOfflineRendering);
     }
 }

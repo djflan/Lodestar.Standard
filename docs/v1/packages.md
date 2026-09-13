@@ -21,4 +21,4 @@ Dependencies identify package ID plus a compatible release expression; Draft v1 
 
 Readers MUST reject absolute paths, drive-prefixed paths, NUL, `..` traversal, links escaping extraction roots, duplicate security-equivalent names, unreasonable expansion, and entries that overwrite one another. Package content MUST be treated as untrusted data.
 
-Optional content hashes use algorithm-qualified values such as `sha256:<hex>` and cover uncompressed entry bytes. Signing and canonical package hashing remain outside Draft v1.
+Content hashes are optional in v1 and use `sha256:` followed by exactly 64 lowercase hexadecimal characters. The digest covers the exact uncompressed resource entry bytes. Canonical JSON, whole-package hashes, and signing remain outside v1.
