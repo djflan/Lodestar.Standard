@@ -1,9 +1,9 @@
 # Sources
 
-A Layer owns exactly one Source Definition. The definition contains its stable ID, Source Provider ID, optional required capabilities, an optional Source Preset reference, resource references, and provider-specific payload. Core Lodestar fields describe identity and dependencies; they do not attempt to normalize every synthesis or sampling parameter.
+A Layer owns exactly one Source Definition. The definition contains its stable ID, exactly one Source Provider ID, a provider payload version, an optional Source Preset reference, resource references, and provider-specific payload. Core Lodestar fields describe identity and dependencies; they do not normalize provider parameters.
 
-A host resolves the provider by stable provider ID, negotiates required capabilities, resolves resources/presets, and asks the provider to prepare a runtime source. Provider payload MUST live under that provider's extension namespace and MUST remain opaque to hosts that do not understand it.
+A host resolves the exact provider by stable provider ID, verifies support for the declared payload version, resolves resources/presets, and asks it to prepare a runtime source. Provider payload MUST remain opaque to hosts that do not understand it.
 
-Providers may implement one shared engine serving many Layers or local engines per Layer. This is intentionally implementation-neutral: observable Layer ownership, event routing, isolation of instance state, and audio boundaries MUST remain equivalent. Voices are provider runtime polyphony and MUST NOT be serialized.
+Each Source Preset belongs to exactly one Source Provider because that provider owns its payload. An Instrument can use many providers by assigning different Source Definitions or Presets to different Layers—for example, one Helios Layer and one FluidSynth Layer. A provider may implement one shared engine serving many Layers or local engines per Layer; observable Layer ownership and isolation MUST remain equivalent. Voices are runtime state and MUST NOT be serialized.
 
-Source Presets are reusable definitions. An instance MAY hold overrides or runtime state without mutating the preset. Resource references use logical IDs, never assumed relative filesystem paths. Helios and FluidSynth are informative initial providers; neither identity is mandatory. Future SFZ or other providers require no core model change. See [providers](providers.md) and [assets](assets.md).
+An instance MAY hold overrides or runtime state without mutating its preset. Resource references use logical IDs, never assumed relative filesystem paths. Helios and FluidSynth are informative initial providers; neither identity is mandatory. Future SFZ or other providers require no core model change.

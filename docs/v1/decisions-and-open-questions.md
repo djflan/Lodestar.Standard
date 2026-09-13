@@ -12,7 +12,7 @@ Helios, Aurora, FluidSynth, workstation/plugin plans, and GM-family mappings are
 2. The normative pan law and mono-to-stereo conversion rule; v1 currently requires hosts to declare them.
 3. Whether effect wet/dry is always a slot property or only a provider capability.
 4. The canonical URI/lexical grammar and registry policy for provider and asset IDs.
-5. The exact compatibility expression for provider payload revisions beyond opaque version strings/capabilities.
+5. The exact compatibility expression for provider payload revisions beyond provider-owned version strings.
 6. Whether content hashes become required and, if so, the canonical byte representation.
 7. Required automation interpolation curves and parameter-unit metadata.
 8. Whether deterministic offline rendering is a conformance level or only a best-effort capability.

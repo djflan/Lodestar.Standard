@@ -7,8 +7,19 @@ namespace Lodestar.Standard.V1.Effects;
 public interface IEffectDefinition
 {
     ProviderId ProviderId { get; }
-    string? PayloadVersion { get; }
-    IReadOnlyList<string> RequiredCapabilities { get; }
+    string PayloadVersion { get; }
+    IReadOnlyList<LodestarId> ResourceIds { get; }
+    string PayloadJson { get; }
+}
+
+/// <summary>Reusable configuration owned by exactly one Effect Provider.</summary>
+public interface IEffectPresetDefinition
+{
+    LodestarId Id { get; }
+    IAssetMetadata Metadata { get; }
+    ProviderId ProviderId { get; }
+    string PayloadVersion { get; }
+    IReadOnlyList<LodestarId> ResourceIds { get; }
     string PayloadJson { get; }
 }
 
@@ -24,5 +35,6 @@ public interface IInsertSlotDefinition
 public interface IEffectChainDefinition
 {
     LodestarId Id { get; }
+    IAssetMetadata Metadata { get; }
     IReadOnlyList<IInsertSlotDefinition> Slots { get; }
 }

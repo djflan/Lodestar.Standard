@@ -1,4 +1,42 @@
 {
-  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://lodestar.dev/schemas/v1/effect-chain.schema.json","title":"Lodestar Effect Chain","type":"object","required":["standardVersion","kind","id","slots"],
-  "properties":{"standardVersion":{"const":"1-draft"},"kind":{"const":"effectChain"},"id":{"type":"string"},"name":{"type":"string"},"slots":{"type":"array","items":{"type":"object","required":["id"],"properties":{"id":{"type":"string"},"effectPresetId":{"type":"string"},"effect":{"type":"object","required":["providerId","payload"],"properties":{"providerId":{"type":"string"},"payloadVersion":{"type":"string"},"requiredCapabilities":{"type":"array","items":{"type":"string"}},"payload":{}},"additionalProperties":true},"bypass":{"type":"boolean","default":false},"optional":{"type":"boolean","default":false},"fallback":{"const":"bypass"}},"oneOf":[{"required":["effectPresetId"]},{"required":["effect"]}],"additionalProperties":true}},"extensions":{"type":"object"}},"additionalProperties":true
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/effect-chain.schema.json",
+  "title": "Lodestar Effect Chain",
+  "type": "object",
+  "required": ["standardVersion", "kind", "id", "metadata", "slots"],
+  "properties": {
+    "standardVersion": { "const": "1-draft" },
+    "kind": { "const": "effectChain" },
+    "id": { "type": "string", "minLength": 1 },
+    "metadata": { "$ref": "metadata.schema.json#/$defs/metadata" },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "effectPresetId": { "type": "string", "minLength": 1 },
+          "effect": {
+            "type": "object",
+            "required": ["providerId", "payloadVersion", "payload"],
+            "properties": {
+              "providerId": { "type": "string", "minLength": 1 },
+              "payloadVersion": { "type": "string", "minLength": 1 },
+              "resourceIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+              "payload": {}
+            },
+            "additionalProperties": true
+          },
+          "bypass": { "type": "boolean", "default": false },
+          "optional": { "type": "boolean", "default": false },
+          "fallback": { "const": "bypass" }
+        },
+        "oneOf": [{ "required": ["effectPresetId"] }, { "required": ["effect"] }],
+        "additionalProperties": true
+      }
+    },
+    "extensions": { "type": "object" }
+  },
+  "additionalProperties": true
 }

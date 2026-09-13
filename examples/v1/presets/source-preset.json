@@ -1,0 +1,1 @@
+{"standardVersion":"1-draft","kind":"sourcePreset","id":"source-preset:bright-lead","metadata":{"name":"Bright Lead","description":"A bright analog-style lead.","authors":[{"name":"Jane Smith","contact":"@janesounds"}],"tags":["lead","bright","analog"]},"providerId":"org.example.source.synth","payloadVersion":"1","resourceIds":[],"payload":{"oscillator":"saw"}}

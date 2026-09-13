@@ -12,10 +12,27 @@ public readonly struct LodestarId
     public override string ToString() => Value;
 }
 
+/// <summary>One credited asset author with optional display-only contact information.</summary>
+public interface IAssetAuthor
+{
+    string Name { get; }
+    string? Contact { get; }
+}
+
+/// <summary>Descriptive metadata that does not affect rendering or compatibility.</summary>
+public interface IAssetMetadata
+{
+    string Name { get; }
+    string? Description { get; }
+    IReadOnlyList<IAssetAuthor> Authors { get; }
+    IReadOnlyList<string> Tags { get; }
+}
+
 /// <summary>A top-level playable definition.</summary>
 public interface IPerformanceDefinition
 {
     LodestarId Id { get; }
+    IAssetMetadata Metadata { get; }
     IReadOnlyList<IPartDefinition> Parts { get; }
     IMixerDefinition Mixer { get; }
     IChannelDefinition MasterChannel { get; }
@@ -33,6 +50,7 @@ public interface IPartDefinition
 public interface IInstrumentDefinition
 {
     LodestarId Id { get; }
+    IAssetMetadata Metadata { get; }
     IReadOnlyList<ILayerDefinition> Layers { get; }
     IMixerDefinition Mixer { get; }
     IChannelDefinition InstrumentChannel { get; }

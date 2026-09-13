@@ -17,13 +17,13 @@ public interface IProviderRequirement
     ProviderId ProviderId { get; }
     ProviderRole Role { get; }
     bool Required { get; }
-    IReadOnlyList<string> Capabilities { get; }
     OptionalFallback? Fallback { get; }
 }
 public interface IPackageManifest
 {
     string StandardVersion { get; }
     LodestarId Id { get; }
+    IAssetMetadata Metadata { get; }
     string ReleaseVersion { get; }
     IReadOnlyList<IPackageDependency> Dependencies { get; }
     IReadOnlyList<IProviderRequirement> Providers { get; }
