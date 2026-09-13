@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/instrument.schema.json",
+  "title": "Lodestar Instrument",
+  "description": "Draft placeholder. Serialization is not yet specified."
+}

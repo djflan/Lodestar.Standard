@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>Lodestar.Standard.V1</PackageId>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Description>Draft .NET contracts for Lodestar Standard v1.</Description>
+  </PropertyGroup>
+</Project>

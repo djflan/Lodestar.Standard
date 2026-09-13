@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/effect-chain.schema.json",
+  "title": "Lodestar Effect Chain",
+  "description": "Draft placeholder. Effect chain serialization is not yet specified."
+}

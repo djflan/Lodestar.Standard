@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="Lodestar.Standard.V1/Lodestar.Standard.V1.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="../tests/Lodestar.Standard.V1.Tests/Lodestar.Standard.V1.Tests.csproj" />
+  </Folder>
+</Solution>

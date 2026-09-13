@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/star-package.schema.json",
+  "title": "Lodestar .star Package",
+  "description": "Draft placeholder. The .star container and package layout are not yet specified."
+}

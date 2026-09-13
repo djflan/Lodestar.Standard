@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/source-preset.schema.json",
+  "title": "Lodestar Source Preset",
+  "description": "Draft placeholder. Source preset serialization is not yet specified."
+}

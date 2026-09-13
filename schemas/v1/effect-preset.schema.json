@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/effect-preset.schema.json",
+  "title": "Lodestar Effect Preset",
+  "description": "Draft placeholder. Effect preset serialization is not yet specified."
+}

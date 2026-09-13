@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lodestar.dev/schemas/v1/manifest.schema.json",
+  "title": "Lodestar Package Manifest",
+  "description": "Draft placeholder. Manifest fields are not yet specified."
+}
