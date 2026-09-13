@@ -1,6 +1,8 @@
-LICENSE PLACEHOLDER
+# Licensing
 
-No license has been selected for Lodestar Standard yet.
+Lodestar Standard uses a dual-license structure:
 
-Until a license is added, no permission is granted to copy, modify, or distribute
-this repository's contents except as permitted by applicable law.
+- Source code, schemas, API definitions and contracts, tests, and executable or reference examples are licensed under the Apache License, Version 2.0. See [LICENSE-CODE](LICENSE-CODE).
+- Specification and documentation content under `docs/` is licensed under the Creative Commons Attribution 4.0 International Public License (CC BY 4.0), unless an individual file states otherwise. See [LICENSE-DOCS](LICENSE-DOCS).
+
+Files that contain an explicit license notice are governed by that notice. See [NOTICE](NOTICE) for attribution information.

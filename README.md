@@ -34,3 +34,7 @@ dotnet test src/Lodestar.Standard.slnx
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Draft changes should preserve the distinction between settled requirements, proposals, and placeholders.
+
+## Licensing
+
+Lodestar Standard uses a dual-license structure: code, schemas, API/contracts, tests, and executable/reference examples are licensed under [Apache-2.0](LICENSE-CODE), while specification and documentation content under `docs/` is licensed under [CC BY 4.0](LICENSE-DOCS) unless a file states otherwise. See [LICENSE](LICENSE) for the full scope and [NOTICE](NOTICE) for attribution.
