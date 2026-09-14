@@ -3,13 +3,13 @@
   "$id": "https://lodestar.dev/schemas/v1/manifest.schema.json",
   "title": "Lodestar Package Manifest",
   "type": "object",
-  "required": ["standardVersion", "kind", "id", "metadata", "releaseVersion", "assets", "resources"],
+  "required": ["standardVersion", "kind", "id", "metadata", "packageVersion", "assets", "resources"],
   "properties": {
     "standardVersion": { "const": "1-draft" },
     "kind": { "const": "packageManifest" },
     "id": { "$ref": "identity.schema.json#/$defs/globalId" },
     "metadata": { "$ref": "metadata.schema.json#/$defs/metadata" },
-    "releaseVersion": { "type": "string", "minLength": 1 },
+    "packageVersion": { "type": "string", "minLength": 1 },
     "assets": {
       "type": "array",
       "items": {
@@ -44,8 +44,8 @@
     "dependencies": {
       "type": "array",
       "items": {
-        "type": "object", "required": ["packageId", "version", "required"],
-        "properties": { "packageId": { "$ref": "identity.schema.json#/$defs/globalId" }, "version": { "type": "string" }, "required": { "type": "boolean" } },
+        "type": "object", "required": ["packageId", "packageVersion"],
+        "properties": { "packageId": { "$ref": "identity.schema.json#/$defs/globalId" }, "packageVersion": { "type": "string", "minLength": 1 } },
         "additionalProperties": false
       }
     },

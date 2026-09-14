@@ -15,9 +15,9 @@ Factory.star
 └── resources/{soundfonts,samples,...}/*
 ```
 
-The manifest MUST contain `standardVersion: "1-draft"`, package `id`, metadata, independently versioned `releaseVersion`, asset/resource entries, dependencies, and provider requirements as applicable. Provider summaries MUST agree with contained assets; tooling SHOULD generate or validate them. Entry paths locate container entries only; serialized references use logical IDs. A resource may be embedded or external, never both.
+The manifest MUST contain `standardVersion: "1-draft"`, package `id`, metadata, independently versioned `packageVersion`, asset/resource entries, dependencies, and provider requirements as applicable. Provider summaries MUST agree with contained assets; tooling SHOULD generate or validate them. Entry paths locate container entries only; serialized references use logical IDs. A resource may be embedded or external, never both.
 
-Dependencies identify package ID plus a compatible release expression; Draft v1 treats the expression as opaque pending final grammar. Required dependencies/providers fail preparation. Optional requirements use declared fallback at the point of use.
+Dependencies identify an exact package ID plus `packageVersion`; range grammar is not part of v1. A dependency record is only a declaration. Whether a particular resource, Source, or Effect use is required or has a fallback is defined at that use site; hosts diagnose unresolved references during preparation. Provider requirements remain declarations of provider availability, while optional behavior is declared at the relevant use.
 
 Readers MUST reject absolute paths, drive-prefixed paths, NUL, `..` traversal, links escaping extraction roots, duplicate security-equivalent names, unreasonable expansion, and entries that overwrite one another. Package content MUST be treated as untrusted data.
 

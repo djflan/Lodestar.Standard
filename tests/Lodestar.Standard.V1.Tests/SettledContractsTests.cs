@@ -89,11 +89,10 @@ public sealed class SettledContractsTests
     }
 
     [Fact]
-    public void PerformanceCanExposeAuxiliaryOutputsAndPortableSequenceState()
+    public void PerformanceHasOnePortableMainOutput()
     {
-        Assert.NotNull(typeof(IOutputConfigurationDefinition).GetProperty(nameof(IOutputConfigurationDefinition.AuxiliaryOutputs)));
-        Assert.NotNull(typeof(IPerformanceDefinition).GetProperty(nameof(IPerformanceDefinition.SequenceTempoState)));
-        Assert.Equal(new[] { "Performance", "Host" }, Enum.GetNames<TimingAuthority>());
+        Assert.NotNull(typeof(IOutputConfigurationDefinition).GetProperty(nameof(IOutputConfigurationDefinition.MasterOutputId)));
+        Assert.Null(typeof(IPerformanceDefinition).GetProperty("SequenceTempoState"));
     }
 
     [Fact]
@@ -101,7 +100,17 @@ public sealed class SettledContractsTests
     {
         Assert.Equal(new[] { "Step", "Linear" }, Enum.GetNames<AutomationInterpolation>());
         Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.Unit)));
+        Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.DisplayName)));
+        Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.Automatable)));
         Assert.NotNull(typeof(IParameterDescriptor).GetProperty(nameof(IParameterDescriptor.ProviderDefinedInterpolationIds)));
+    }
+
+    [Fact]
+    public void PackageVersionsAndDependenciesUseLogicalPackageVersionNames()
+    {
+        Assert.NotNull(typeof(IPackageManifest).GetProperty(nameof(IPackageManifest.PackageVersion)));
+        Assert.NotNull(typeof(IPackageDependency).GetProperty(nameof(IPackageDependency.PackageVersion)));
+        Assert.Null(typeof(IPackageDependency).GetProperty("Required"));
     }
 
     [Fact]

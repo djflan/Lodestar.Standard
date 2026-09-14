@@ -39,7 +39,7 @@ flowchart TB
   subgraph Package["Assets and .star packages"]
     Star[".star: ZIP-compatible"] --> Manifest[Manifest]
     Manifest --> SV[Standard v1 Draft marker]
-    Manifest --> RV[Package release SemVer]
+    Manifest --> RV[packageVersion]
     Manifest --> Assets["Performance / Instrument / presets / chains"]
     Manifest --> Resources["Embedded resources: SF2/samples/IRs"]
     Manifest --> Deps[External packages/libraries]
@@ -48,7 +48,7 @@ flowchart TB
     Assets -->|stable references| Assets
   end
   subgraph EventModel["Events and mappings"]
-    MIDI["MIDI / GM / GM2 / GS / XG adapter"] --> Event[Native Lodestar event]
+    MIDI["MIDI / host adapter"] --> Event[Native Lodestar event]
     Event --> Part
   end
   subgraph Hosts["Host/adaptor boundary"]
@@ -75,7 +75,6 @@ flowchart LR
   P --> PB[Performance buses/returns]
   P --> M[Master Channel]
   P --> O[Output configuration]
-  P -. may own .-> T[Sequence/tempo state]
   Pt --> PC[Part Channel]
   I --> IM[Instrument Mixer]
   I --> IB[Instrument buses/returns]
@@ -137,7 +136,7 @@ Sources and Effects use symmetric provider seams. Canonical providers are exampl
 flowchart TB
   PKG[.star ZIP] --> MF[manifest.json]
   MF --> SV[standardVersion]
-  MF --> RV[releaseVersion]
+  MF --> RV[packageVersion]
   MF --> EX[exported assets by stable ID]
   MF --> ER[embedded resources by stable ID/path]
   MF --> DP[external package dependencies]
@@ -157,8 +156,8 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-  MIDI[MIDI / GM-family / XG] --> A[Adapter/profile]
-  API[Native API / sequence] --> E[Part-targeted event]
+  MIDI[MIDI / host input] --> A[Adapter]
+  API[Host runtime API] --> E[Part-targeted event]
   A --> E --> P[Part]
   P -->|0..1| I[Instrument]
   I --> L1[Layer 1]
@@ -217,17 +216,17 @@ Adapters are informative integration surfaces. Schemas and contracts project the
 | Provider capabilities | Provider/host | 0..* | Runtime discovery | N/A | N/A | N/A | Reported | Requirements may be | [providers](providers.md) | Manifest requirements | `Capabilities` |
 | Helios / FluidSynth / sfizz | Ecosystem | Optional | Runtime providers | No | No | Via Layer Channel | Source Providers | Payload only | [sources](sources.md) | No vendor schema | External |
 | Aurora | Ecosystem | Optional | Runtime provider | Through slots | No | No | Effect Provider | Payload only | [effects](effects.md) | No vendor schema | External |
-| Native event | Performance/API | 0..*; targets 1 Part | Runtime delivery or persistent Sequence | No | No | No | Delivered to sources | Yes in Sequence | [events](events.md) | `performance.schema.json` | `ILodestarEvent`, `ISequencedEventDefinition` |
-| MIDI/GM/GM2/GS/XG | Host adapter | 0..* | Runtime/informative | No | No | No | Mapping only | Not native | [events](events.md) | No | No core type |
+| Native event | Host runtime/API | 0..*; targets 1 Part | Runtime delivery | No | No | No | Delivered to sources | No | [events](events.md) | No | `ILodestarEvent` |
+| MIDI input | Host adapter | 0..* | Runtime/informative | No | No | No | Mapping only | Not native | [events](events.md) | No | No core type |
 | Source/Effect Preset | Package/library | 0..* | Persistent asset | No | No | No | Exactly 1 matching provider | Yes | [assets](assets.md) | preset schemas | Preset definitions |
 | Effect Chain | Package/library | 0..* slots | Persistent asset | Ordered slots | No | No | Many providers allowed | Yes | [effects](effects.md) | `effect-chain.schema.json` | `IEffectChainDefinition` |
 | Resource | Package/library | 0..* | Persistent non-code data | No | No | No | Provider-consumed | Yes | [assets](assets.md) | `manifest.schema.json` | `IPackageResourceEntry` |
 | Stable logical ID/reference | Declared resolution scope | 1/object; 0..* refs | Persistent | N/A | N/A | N/A | Includes provider IDs | Yes | [assets](assets.md) | All asset schemas | `LodestarId`, `ProviderId` |
 | `.star` package | Distribution | 1 manifest | Persistent ZIP | No | No | No | Declares requirements | Yes | [packages](packages.md) | `star-package.schema.json` | `StarPackage`, `IPackageManifest` |
 | Package dependency/library | Manifest | 0..* | Persistent + runtime resolution | No | No | No | No | Yes | [packages](packages.md) | `manifest.schema.json` | `IPackageDependency` |
-| Output configuration | Performance | 1 main; 0..* auxiliaries | Persistent logical + runtime binding | No | No | Endpoint, not Bus | No | Yes | [host boundaries](host-boundaries.md) | `performance.schema.json` | `IOutputConfigurationDefinition` |
-| Sequence/tempo state | Performance | 0..1 | Both | No | No | No | No | Yes when present | [events](events.md) | `performance.schema.json` | `ISequenceTempoStateDefinition` |
+| Output configuration | Performance | 1 canonical main stereo output | Persistent logical + runtime binding | No | No | Endpoint, not Bus | No | Yes | [host boundaries](host-boundaries.md) | `performance.schema.json` | `IOutputConfigurationDefinition` |
+| Host sequence/tempo/automation state | DAW/editor/host | Host-defined | Runtime/product state | No | No | Resolves to native events | No | Not in Lodestar content | [events](events.md) | No | No core type |
 | Host/plugin adapter | Outside core | 0..* | Runtime/product | N/A | N/A | Maps outputs | Hosts providers | Projection only | [host boundaries](host-boundaries.md) | No | No normative ABI |
 | DSP limits/profile | Host/provider | Per prepared context | Runtime discovery | N/A | N/A | N/A | Reported | As applicable | [realtime](realtime.md) | No hard-limit schema | `Capabilities` |
 | Standard version | Standard/document | Exactly 1/document | Persistent marker | N/A | N/A | N/A | No | Yes | [serialization](serialization.md) | All documents | namespace/constant |
-| Package release SemVer | Package | Exactly 1 | Persistent metadata | N/A | N/A | N/A | No | Yes | [packages](packages.md) | `manifest.schema.json` | `ReleaseVersion` |
+| Package version | Package | Exactly 1 | Persistent metadata | N/A | N/A | N/A | No | Yes | [packages](packages.md) | `manifest.schema.json` | `PackageVersion` |

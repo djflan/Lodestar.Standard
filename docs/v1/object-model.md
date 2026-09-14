@@ -25,7 +25,7 @@ Part Channel outputs ───────────────────�
 
 The Instrument Mixer owns Layer Channels and Instrument-scope buses. The Performance Mixer owns Part Channels, Performance-scope buses, and the Master Channel. An Instrument Channel represents the mixed instrument output before it enters its containing Part Channel; implementations MAY fuse adjacent processing stages if results remain equivalent.
 
-A Performance owns logical output configuration and MAY own one host-neutral Sequence and Tempo Map. A host adapter maps logical outputs to devices, files, plugin buses, or host endpoints. Sequence/tempo state remains Performance-scoped and cannot change Part, Instrument, or provider ownership.
+A Performance owns one logical main stereo output configuration. A host adapter maps that output to a device, file, plugin bus, or other endpoint. Sequences, tempo maps, transport, automation lanes, and other DAW/editor state are host-owned and are not part of a Performance or `.star` package.
 
 ## Lifecycle and invariants
 

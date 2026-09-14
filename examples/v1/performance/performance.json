@@ -114,34 +114,6 @@
     "output": "output:main"
   },
   "outputConfiguration": {
-    "masterOutputId": "output:main",
-    "auxiliaryOutputs": [
-      {
-        "id": "output:lead",
-        "name": "Lead",
-        "sourceKind": "part",
-        "sourceId": "part:lead"
-      },
-      {
-        "id": "output:reverb",
-        "name": "Reverb Return",
-        "sourceKind": "performanceBus",
-        "sourceId": "bus:reverb"
-      }
-    ]
-  },
-  "sequenceTempoState": {
-    "timingAuthority": "performance",
-    "sequence": {
-      "events": []
-    },
-    "tempoMap": {
-      "points": [
-        {
-          "beat": 0,
-          "beatsPerMinute": 120
-        }
-      ]
-    }
+    "masterOutputId": "output:main"
   }
 }

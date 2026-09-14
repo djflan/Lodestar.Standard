@@ -22,12 +22,12 @@ VST3 is the first planned adapter, followed by CLAP. Planned products are Lodest
 
 ## Protocol adapters and shared backends
 
-MIDI, GM, GM2, GS, and XG map external conventions into Lodestar events, Part IDs, controls, and provider payloads. They MUST NOT introduce a second native hierarchy, make a synth engine an event target, force 16 Parts, or transfer ownership to a shared backend.
+MIDI is one possible external input/control adapter. A host MAY map MIDI messages and conventions into Lodestar events, Part IDs, controls, and provider payloads. This does not imply GM, GS, XG, or other legacy-profile compatibility. An adapter MUST NOT introduce a second native hierarchy, make a synth engine an event target, force a Part count, or transfer ownership to a shared backend.
 
 A shared backend such as FluidSynth MAY serve several Layer runtime instances. That optimization does not make backend MIDI channels or audio groups the owner of Parts, Instruments, Layers, Sources, or Channels.
 
 ## Outputs and independence
 
-A Performance owns one logical main stereo output and MAY expose named auxiliary stereo outputs sourced from Part Channels or Performance buses. The host maps logical IDs to devices, files, DAW buses, plugin outputs, or other endpoints. A host that cannot expose a requested auxiliary MUST diagnose it and MUST NOT silently fold it into another output. The Master Channel remains the final portable processing stage before the main output; endpoint details are not canonical Lodestar state.
+A Performance owns one logical main stereo output. The host maps that portable output to a device, file, DAW bus, plugin output, or other endpoint. A VST3 or other host MAY provide additional outputs and retain their routing in host/plugin state, but that state is not portable Lodestar content. The Master Channel remains the final portable processing stage before the main output; endpoint details are not canonical Lodestar state.
 
 Unity and other integrations may be closed-source or commercial but MUST NOT be necessary to implement the Standard independently. Documentation is CC BY 4.0; contracts, schemas, tests, and executable/reference examples are Apache-2.0 as described by the repository licenses.

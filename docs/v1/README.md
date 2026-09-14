@@ -6,7 +6,7 @@ This directory is the human-readable Lodestar Standard v1 Draft. It defines port
 
 The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHOULD**, **SHOULD NOT**, and **MAY** express conformance requirements. Until v1 is finalized, requirements can change through the proposal process. Prose using those words, schema constraints, and declared invariants are normative. Examples, diagrams, rationale, implementation notes, product references, and proposal documents are informative. If schema and normative prose disagree, that is a draft defect; implementations SHOULD report it rather than silently choosing a new meaning.
 
-Standard version `1` denotes an interoperability generation and is independent of package `releaseVersion` values and library/package SemVer. A future Standard version is expected only for breaking interoperability changes.
+Standard version `1` denotes an interoperability generation and is independent of package `packageVersion` values and library/package SemVer. A future Standard version is expected only for breaking interoperability changes.
 
 ## Scope
 

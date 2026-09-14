@@ -28,8 +28,7 @@ public interface IPackageResourceEntry
 public interface IPackageDependency
 {
     LodestarId PackageId { get; }
-    string VersionExpression { get; }
-    bool Required { get; }
+    string PackageVersion { get; }
 }
 public interface IProviderRequirement
 {
@@ -43,7 +42,7 @@ public interface IPackageManifest
     string StandardVersion { get; }
     LodestarId Id { get; }
     IAssetMetadata Metadata { get; }
-    string ReleaseVersion { get; }
+    string PackageVersion { get; }
     IReadOnlyList<IPackageAssetEntry> Assets { get; }
     IReadOnlyList<IPackageResourceEntry> Resources { get; }
     IReadOnlyList<IPackageDependency> Dependencies { get; }

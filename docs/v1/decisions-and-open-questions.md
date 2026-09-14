@@ -4,7 +4,7 @@
 
 The product names, hierarchy/cardinalities, channel/mixer/bus distinctions, two mixer scopes, send and submix buses, insert locations, provider abstractions, native Part-targeted events, `.star` ZIP container, stable logical IDs, separate Standard/package versions, licensing split, and independent implementability are requirements.
 
-Helios, Aurora, FluidSynth, workstation/plugin plans, and GM-family mappings are informative ecosystem context rather than mandatory dependencies.
+Helios, Aurora, FluidSynth, and workstation/plugin plans are informative ecosystem context rather than mandatory dependencies. MIDI is a host adapter; v1 does not require compatibility with GM, GS, XG, or any legacy profile.
 
 The September 2026 reconciliation also settles:
 
@@ -16,8 +16,9 @@ The September 2026 reconciliation also settles:
 6. Optional SHA-256 hashes over exact uncompressed resource bytes.
 7. Required step and linear automation plus parameter descriptors.
 8. Deterministic offline rendering as an optional reported capability.
-9. One required main stereo output and optional named Part/bus auxiliary stereo outputs.
-10. An optional Performance Sequence and Tempo Map with explicitly selected Performance or host timing authority.
+9. One required portable main stereo output; additional host/plugin outputs are host state.
+10. Sequences, tempo maps, arrangements, transport, automation lanes, and MIDI mappings are host/editor state and are not serialized in v1 content packages.
+11. Prepared Source and Effect instances report fixed latency; hosts compensate and preserve timing through bypass.
 
 ## Open Draft-v1 questions
 

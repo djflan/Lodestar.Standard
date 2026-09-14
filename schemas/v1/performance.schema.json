@@ -28,69 +28,7 @@
       "type": "object",
       "required": ["masterOutputId"],
       "properties": {
-        "masterOutputId": { "type": "string", "minLength": 1 },
-        "auxiliaryOutputs": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["id", "name", "sourceKind", "sourceId"],
-            "properties": {
-              "id": { "type": "string", "minLength": 1 },
-              "name": { "type": "string", "minLength": 1 },
-              "sourceKind": { "enum": ["part", "performanceBus"] },
-              "sourceId": { "type": "string", "minLength": 1 }
-            },
-            "additionalProperties": false
-          }
-        }
-      },
-      "additionalProperties": true
-    },
-    "sequenceTempoState": {
-      "type": "object",
-      "required": ["timingAuthority", "sequence", "tempoMap"],
-      "properties": {
-        "timingAuthority": { "enum": ["performance", "host"], "default": "performance" },
-        "sequence": {
-          "type": "object",
-          "required": ["events"],
-          "properties": {
-            "events": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": ["beat", "partId", "kind", "payload"],
-                "properties": {
-                  "beat": { "type": "number", "minimum": 0 },
-                  "partId": { "type": "string", "minLength": 1 },
-                  "kind": { "enum": ["noteOn", "noteOff", "perNoteExpression", "partControl", "parameterAutomation"] },
-                  "payload": { "type": "object" }
-                },
-                "additionalProperties": true
-              }
-            }
-          },
-          "additionalProperties": false
-        },
-        "tempoMap": {
-          "type": "object",
-          "required": ["points"],
-          "properties": {
-            "points": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "required": ["beat", "beatsPerMinute"],
-                "properties": {
-                  "beat": { "type": "number", "minimum": 0 },
-                  "beatsPerMinute": { "type": "number", "exclusiveMinimum": 0 }
-                },
-                "additionalProperties": false
-              }
-            }
-          },
-          "additionalProperties": false
-        }
+        "masterOutputId": { "type": "string", "minLength": 1 }
       },
       "additionalProperties": false
     },
